@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/public.css">
+    <script src="jquery.min.js"></script>
+    <script src="common.js"></script>
+</head>
+<body>
+<div id="headtop">
+    <div id="headcon"><!--右面登录注册-->
+        <div class="hello">
+            <p>您好，欢迎光临凡客诚品！</p>
+            <span>
+                    <a href="login.html" id="login">登录</a>
+                    <a href="register.html">注册</a>
+                    <a href="register.html">我的订单</a>
+                    <a href="#"><img src="img/notice.png">网站公告</a>
+                    <a id="wechat" style="position: relative;">
+                        <img src="img/w1.jpg" alt="">
+                        <b class="weixin" style="position: absolute;top: 28px;right: 0;display: none">
+                            <img src="img/wexin.jpg" alt="" style="width: 150px;height: 150px;">
+                        </b>
+                    </a>
+                    <a><img src="img/w2.jpg" alt=""></a>
+                </span>
+        </div>
+    </div>
+</div>
+
+<div id="head">
+
+</div>
+
+<!--轮播图-->
+<div class="wrapper">
+    <ul>
+        <li style="z-index: 6;"><img src="img/con1.jpg" alt=""/></li>
+        <li style="z-index: 5;"><img src="img/con2.jpg" alt=""/></li>
+        <li style="z-index: 4;"><img src="img/con3.jpg" alt=""/></li>
+        <li style="z-index: 3;"><img src="img/con4.jpg" alt=""/></li>
+        <li style="z-index: 2;"><img src="img/con5.jpg" alt=""/></li>
+        <li style="z-index: 1;"><img src="img/con6.jpg" alt=""/></li>
+    </ul>
+    <ol style="z-index: 10;">
+        <li class="current"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+<!--尾部-->
+<div id="foot">
+
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var timer = null;
+    var $ulist = $("ul li");
+    var $olist = $("ol li");//size() 获取jq中元素的个数
+    var index = 0;
+    timer = setInterval( autoPlay , 2000 );
+    function autoPlay(){
+        index++;
+        if( index == $olist.size() ){
+            index = 0;
+        }
+        $ulist.eq(index).fadeIn(1500).siblings().fadeOut(1500);
+        $olist.eq(index).addClass("current").siblings().removeClass("current");
+    }
+    //鼠标滑入停止定时器
+    $olist.mouseover (function(){
+        clearInterval( timer );
+        index = $(this).index()-1;
+        autoPlay();
+
+    }).mouseout(function(){
+        timer = setInterval( autoPlay , 1000 );
+    });
+    //wechat滑过
+    $("#wechat").hover(function () {
+        $(".weixin").css({display:"block"});
+    },function () {
+        $(".weixin").css({display:"none"});
+    })
+
+
+
+</script>
